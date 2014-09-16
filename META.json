@@ -1,10 +1,10 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "XXX",
    "author" : [
       "tokubass <tokubass@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v1.1.0, CPAN::Meta::Converter version 2.141520",
+   "generated_by" : "Minilla/v1.1.0, CPAN::Meta::Converter version 2.140640",
    "license" : [
       "perl_5"
    ],
@@ -42,16 +42,28 @@
       },
       "runtime" : {
          "requires" : {
+            "Sub::Recursive" : "0",
             "perl" : "5.008005"
          }
       },
       "test" : {
          "requires" : {
-            "Test::More" : "0.98"
+            "Test::More" : "0.98",
+            "Test::Pretty" : "0"
          }
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "ssh://git@github.com/tokubass/p5-HTMLishElement-Maker/issues"
+      },
+      "homepage" : "ssh://git@github.com/tokubass/p5-HTMLishElement-Maker",
+      "repository" : {
+         "url" : "ssh://git@github.com/tokubass/p5-HTMLishElement-Maker.git",
+         "web" : "ssh://git@github.com/tokubass/p5-HTMLishElement-Maker"
+      }
+   },
    "version" : "0.01",
    "x_authority" : "cpan:TOKUBASS"
 }
