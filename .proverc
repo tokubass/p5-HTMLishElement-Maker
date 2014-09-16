@@ -1,3 +1,4 @@
 -Ilib
+-r
 -Pretty
 -v

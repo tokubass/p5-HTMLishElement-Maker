@@ -34,6 +34,7 @@ sub children { @{ shift->{children} || [] } }
 sub push {
     my $self = shift;
     my $elem = shift;
+    $elem = '' if (!defined $elem);
 
     if ( ref($elem) eq ref($self) ) {
         push @{$self->{children}}, $elem;
@@ -83,8 +84,8 @@ sub print {
 }
 
 sub _get_string {
-    my $self = shift;
-    my $inner_elem = shift || '';
+    my $self = $_[0];
+    my $inner_elem = defined $_[1] ? $_[1] : '';
     my $tag = $self->{tag};
     my $attr = $self->_build_attr;
 
