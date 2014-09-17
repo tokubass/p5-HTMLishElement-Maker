@@ -1,5 +1,5 @@
 {
-   "abstract" : "XXX",
+   "abstract" : "make only html-like tag. escape and encode are not performed.",
    "author" : [
       "tokubass <tokubass@cpan.org>"
    ],
