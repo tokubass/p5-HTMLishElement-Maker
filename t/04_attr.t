@@ -27,7 +27,7 @@ subtest 'custom_attr' => sub {
         local $HTMLishElement::Maker::ATTR_SETTING = {
             style => 'key:val;',
         };
-            my $anchor = htmlish('<a>');
+        my $anchor = htmlish('<a>');
         $anchor->add_attr(style => { color => 'red', display => 'block'});
         is($anchor->print, '<a style="color:red;display:block;"></a>');
     };
@@ -41,6 +41,20 @@ subtest 'custom_attr' => sub {
     };
 };
 
+
+subtest 'bulk_set' => sub {
+    my $anchor = htmlish('<a>');
+    local $HTMLishElement::Maker::ATTR_SETTING = {  style => 'key:val;' };
+    $anchor->add_attr(
+        class => ['class1','class2'],
+        id    => 'id1',
+        style => { color => 'red', display => 'block'},
+    );
+
+    is($anchor->print, '<a class="class1 class2" id="id1" style="color:red;display:block;"></a>');
+
+
+};
 
 done_testing;
 

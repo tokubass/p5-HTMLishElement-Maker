@@ -47,22 +47,29 @@ sub push {
 
 sub add_attr {
     my $self = shift;
-    my $attr_name = shift  or die 'please input attribute name';
-    my $attr_val = shift or die 'please input attribute value';
+    die 'Odd number of elements in attr list' if (@_ % 2);
 
-    # class="hoge"
-    if ( !ref($attr_val) ) {
-        $self->{attr}{$attr_name} ||= [];
-        CORE::push(@{$self->{attr}{$attr_name}}, $attr_val);
-    }
-    # class="hoge foo"
-    elsif( ref($attr_val) eq 'ARRAY') {
-        $self->{attr}{$attr_name} ||= [];
-        CORE::push(@{$self->{attr}{$attr_name}}, @$attr_val);
-    }
-    # style="color:red;"
-    elsif( ref($attr_val) eq 'HASH') {
-        $self->{attr}{$attr_name} = $attr_val;
+    my %attrs = @_;
+    for my $attr_name (sort keys %attrs){
+        my $attr_val = $attrs{$attr_name};
+
+        # warn $attr_name;
+        # warn $attr_val;
+
+        # class="hoge"
+        if ( !ref($attr_val) ) {
+            $self->{attr}{$attr_name} ||= [];
+            CORE::push(@{$self->{attr}{$attr_name}}, $attr_val);
+        }
+        # class="hoge foo"
+        elsif( ref($attr_val) eq 'ARRAY') {
+            $self->{attr}{$attr_name} ||= [];
+            CORE::push(@{$self->{attr}{$attr_name}}, @$attr_val);
+        }
+        # style="color:red;"
+        elsif( ref($attr_val) eq 'HASH') {
+            $self->{attr}{$attr_name} = $attr_val;
+        }
     }
 }
 
@@ -157,6 +164,12 @@ HTMLishElement::Maker - make only html-like tag. escape and encode are not perfo
     $anchor->add_attr(class => 'hoge'); # <a class="hoge">text</a>
     $anchor->add_attr(class => [qw/ foo bar /] ); # <a class="hoge foo bar">text</a>
     $anchor->reset_attr('class'); #<a>text</a>
+
+    #bulk set
+    $anchor->add_attr(
+        id    => 'id1',
+        class => [qw/ foo bar /]
+    ); # <a class="hoge foo" id="id1">text</a>
 
     local $HTMLishElement::Maker::ATTR_SETTING = {
             style => 'key:val;',
