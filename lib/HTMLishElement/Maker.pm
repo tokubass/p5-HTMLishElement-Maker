@@ -173,10 +173,10 @@ HTMLishElement::Maker - make only html-like tag. escape and encode are not perfo
     ); # <a class="hoge foo" id="id1">text</a>
 
     local $HTMLishElement::Maker::ATTR_SETTING = {
-            style => 'key:val;',
-            mystyle => 'key#val|',
-        }
+        style => 'key:val;',
+        mystyle => 'key#val|',
     };
+
     $anchor->add_attr(style => { color => 'red', display => 'block'}); # <a style="color:red;display:block;">text</a>
     $anchor->add_attr(mystyle => { color => 'red', display => 'block'}); # <a style="color:red;display:block;" mystyle="color#red|display#block|">text</a>
     $anchor->reset_attr; #remove all attr
