@@ -68,7 +68,8 @@ sub add_attr {
         }
         # style="color:red;"
         elsif( ref($attr_val) eq 'HASH') {
-            $self->{attr}{$attr_name} = $attr_val;
+            $self->{attr}{$attr_name} ||= {};
+            $self->{attr}{$attr_name} = { %{$self->{attr}{$attr_name}}, %$attr_val };
         }
     }
 }
