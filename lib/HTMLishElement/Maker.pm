@@ -13,7 +13,7 @@ our $ATTR_SETTING = {};
 sub new {
     my ($class, $tag_name) = @_;
 
-    croak 'invalid tag_name' unless $tag_name =~ m!\A<([^/?]+)(/?)>\z!;
+    croak 'invalid tag_name' unless $tag_name =~ m!\A<([^/]+)(/?)>\z!;
 
     my $self = bless {
         tag => $1,
